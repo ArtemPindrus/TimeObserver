@@ -21,7 +21,7 @@ public partial class MainWindowViewModel : ViewModel {
 
     [RelayCommand]
     private void ShowSettingsWindow() {
-        app.SettingsWindow.Show();
+        App.ShowSettingsWindow();
     }
 
     [RelayCommand]

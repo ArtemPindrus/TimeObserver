@@ -12,12 +12,14 @@ public partial class App : Application {
     public readonly Stopwatch Stopwatch = new();
     public SettingsWindow SettingsWindow { get; private set; }
     public static readonly RemindersSystem RemindersSystem = new();
+
+    private static readonly SettingsWindow settingsWindow = new() {
+        DataContext = new SettingsWindowViewModel()
+    };
+
     
     protected override void OnStartup(StartupEventArgs e) {
         base.OnStartup(e);
-
-        SettingsWindow = new();
-        SettingsWindow.DataContext = new SettingsWindowViewModel(SettingsWindow);
 
         Stopwatch.Resume();
 
@@ -40,4 +42,8 @@ public partial class App : Application {
     private void Stopwatch_Tick(TimeSpan elapsedTime) {
         RemindersSystem.UpdateReminders(elapsedTime);
     }
+
+    public static void ShowSettingsWindow() => settingsWindow.Show();
+
+    public static void HideSettingsWindow() => settingsWindow.Hide();
 }
