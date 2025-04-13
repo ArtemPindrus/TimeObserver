@@ -6,6 +6,8 @@ namespace TimeObserver.Models;
 public partial class Stopwatch : ObservableObject {
     private readonly TimeSpan oneSecond = TimeSpan.FromSeconds(1);
     private readonly DispatcherTimer timer;
+
+    public event Action<TimeSpan>? Tick;
     
     private TimeSpan elapsedTime;
 
@@ -46,5 +48,6 @@ public partial class Stopwatch : ObservableObject {
 
     private void TimerOnTick(object? sender, EventArgs e) {
         ElapsedTime += oneSecond;
+        Tick?.Invoke(ElapsedTime);
     }
 }
