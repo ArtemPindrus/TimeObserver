@@ -4,12 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:TimeObserver.Converters"
     xmlns:local="clr-namespace:TimeObserver"
+    xmlns:reminders="clr-namespace:TimeObserver.Models.Reminders"
     xmlns:system="clr-namespace:System;assembly=System.Runtime">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="SvgImages.xaml" />
-                <ResourceDictionary Source="Style.xaml" />
+                <ResourceDictionary Source="/Resources/SvgImages.xaml" />
+                <ResourceDictionary Source="/Resources/Style.xaml" />
+                <ResourceDictionary Source="/Resources/RemindersDataTemplates.xaml" />
                 <ResourceDictionary>
                     <converters:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
                     <converters:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverterInverted" Invert="true" />
