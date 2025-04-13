@@ -1,0 +1,11 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:reminders="clr-namespace:TimeObserver.Models.Reminders">
+    <DataTemplate DataType="{x:Type reminders:IntervalReminder}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Interval: " />
+            <TextBox Text="{Binding Interval, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>
