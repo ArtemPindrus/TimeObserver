@@ -8,6 +8,7 @@ public partial class Stopwatch : ObservableObject {
     private readonly DispatcherTimer timer;
 
     public event Action<TimeSpan>? Tick;
+    public event Action? Stopped;
     
     private TimeSpan elapsedTime;
 
@@ -44,6 +45,8 @@ public partial class Stopwatch : ObservableObject {
         timer.Stop();
         ElapsedTime = TimeSpan.Zero;
         IsRunning = false;
+
+        Stopped?.Invoke();
     }
 
     private void TimerOnTick(object? sender, EventArgs e) {
