@@ -13,12 +13,8 @@ public partial class TimeViewModel : ViewModel {
     public string ElapsedTime => stopwatch.ElapsedTime.ToString();
 
     public TimeViewModel() {
-        if (Application.Current is not App app) { //designer guard
-            stopwatch = new Stopwatch();
-        } else {
-            stopwatch = app.Stopwatch;
-            stopwatch.PropertyChanged += StopwatchOnPropertyChanged;
-        }
+        stopwatch = App.Stopwatch;
+        stopwatch.PropertyChanged += StopwatchOnPropertyChanged;
     }
 
     [RelayCommand]

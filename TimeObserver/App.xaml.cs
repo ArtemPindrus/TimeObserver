@@ -9,8 +9,7 @@ namespace TimeObserver;
 /// Interaction logic for App.xaml
 /// </summary>
 public partial class App : Application {
-    public readonly Stopwatch Stopwatch = new();
-    public SettingsWindow SettingsWindow { get; private set; }
+    public static readonly Stopwatch Stopwatch = new();
     public static readonly RemindersSystem RemindersSystem = new();
 
     private static readonly SettingsWindow settingsWindow = new() {
