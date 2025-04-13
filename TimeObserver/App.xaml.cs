@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using TimeObserver.Models;
+using TimeObserver.Models.Reminders;
 using TimeObserver.ViewModels;
 using TimeObserver.Windows;
 
@@ -22,7 +23,7 @@ public partial class App : Application {
 
         Stopwatch.Resume();
 
-        MainWindow mainWindow = new MainWindow() {
+        MainWindow mainWindow = new() {
             DataContext = new MainWindowViewModel()
         };
 
