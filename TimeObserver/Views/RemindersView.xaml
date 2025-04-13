@@ -5,12 +5,69 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TimeObserver.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:reminders="clr-namespace:TimeObserver.Models.Reminders"
     xmlns:viewmodels="clr-namespace:TimeObserver.ViewModels"
     d:DataContext="{d:DesignInstance Type=viewmodels:RemindersViewModel}"
     d:DesignHeight="200"
     d:DesignWidth="300"
     mc:Ignorable="d">
     <Grid>
-        <ListBox />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" VerticalAlignment="Center">Reminders:</TextBlock>
+            <Button
+                Grid.Column="1"
+                Margin="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Click="Button_Click"
+                Content="Add">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Interval Reminder" />
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+        </Grid>
+
+        <ListBox Grid.Row="1" ItemsSource="{Binding Reminders}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Tag" Value="{Binding DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                    <Setter Property="ContextMenu">
+                        <Setter.Value>
+                            <ContextMenu>
+                                <MenuItem
+                                    Command="{Binding PlacementTarget.Tag.DeleteReminderCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                    CommandParameter="{Binding}"
+                                    Header="Delete" />
+                            </ContextMenu>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
+            <d:ListBox.Items>
+                <reminders:IntervalReminder Interval="00:00:10" />
+                <reminders:IntervalReminder Interval="00:00:10" />
+            </d:ListBox.Items>
+        </ListBox>
+
+        <!--  Debug  -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Command="{Binding SerializeCommand}" Content="Serialize" />
+            <Button Command="{Binding DeserializeCommand}" Content="Deserialize" />
+            <Button Command="{Binding ClearCommand}" Content="Clear" />
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -24,5 +24,13 @@ namespace TimeObserver.Views
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            Button button = (Button)sender;
+
+            button.ContextMenu.IsOpen = true;
+
+            e.Handled = true;
+        }
     }
 }
