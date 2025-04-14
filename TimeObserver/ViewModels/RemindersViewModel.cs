@@ -15,10 +15,10 @@ namespace TimeObserver.ViewModels
         public static void DeleteReminder(Reminder reminder) => App.RemindersSystem.RemoveReminder(reminder);
 
         [RelayCommand]
-        public static async Task Serialize() => await App.RemindersSystem.Serialize();
+        public static async Task Serialize() => await App.RemindersSystem.SerializeAsync();
 
         [RelayCommand]
-        public static async Task Deserialize() => await App.RemindersSystem.TryDeserialize();
+        public static async Task Deserialize() => await App.RemindersSystem.TryDeserializeAsync();
 
         [RelayCommand]
         public static void Clear() => App.RemindersSystem.Clear();
