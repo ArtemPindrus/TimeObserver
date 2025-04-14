@@ -38,6 +38,11 @@ public partial class Stopwatch : ObservableObject {
         IsRunning = false;
     }
 
+    public void Restart() {
+        Stop();
+        Resume();
+    }
+
     /// <summary>
     /// Stops the stopwatch and resets elapsed time.
     /// </summary>
