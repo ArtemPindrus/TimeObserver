@@ -8,4 +8,10 @@
             <TextBox Text="{Binding Interval, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
         </StackPanel>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type reminders:OneTimeReminder}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="One Time At: " />
+            <TextBox Text="{Binding Time, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+        </StackPanel>
+    </DataTemplate>
 </ResourceDictionary>
