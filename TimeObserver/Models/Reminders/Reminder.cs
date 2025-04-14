@@ -19,6 +19,8 @@ namespace TimeObserver.Models.Reminders
 
         public abstract void Reset();
 
+        public abstract bool IsEqualTo(Reminder reminder);
+
         public bool Update(TimeSpan elapsedTime) {
             if (CheckTrigger(elapsedTime)) {
                 TimesTriggered++;

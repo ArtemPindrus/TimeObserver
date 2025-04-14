@@ -30,7 +30,11 @@ namespace TimeObserver.Models.Reminders {
 
         public void Clear() => reminders.Clear();
 
-        public void AddReminder(Reminder reminder) => reminders.Add(reminder);
+        public void AddReminder(Reminder reminder) {
+            if (reminders.Any(x => x.IsEqualTo(reminder))) return;
+
+            reminders.Add(reminder);
+        }
 
         public void RemoveReminder(Reminder reminder) => reminders.Remove(reminder);
 

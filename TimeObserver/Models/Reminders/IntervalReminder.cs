@@ -43,5 +43,11 @@ namespace TimeObserver.Models.Reminders
             // TODO: implement
             MessageBox.Show($"Interval Reminder triggered! {TimesTriggered} times.");
         }
+
+        public override bool IsEqualTo(Reminder reminder) {
+            if (reminder is not IntervalReminder other) return false;
+
+            return other.Interval == Interval;
+        }
     }
 }
