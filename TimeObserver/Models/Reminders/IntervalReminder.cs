@@ -1,7 +1,9 @@
 ﻿using System.Windows;
+using TimeObserver.ViewModels.AddReminderViewModels;
 
 namespace TimeObserver.Models.Reminders
 {
+    [AddReminderViewModel(typeof(AddIntervalReminderViewModel))]
     public class IntervalReminder : Reminder {
         private double secondsInterval;
 
