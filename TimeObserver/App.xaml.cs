@@ -6,6 +6,7 @@ using TimeObserver.Utilities;
 using TimeObserver.ViewModels;
 using TimeObserver.ViewModels.AddReminderViewModels;
 using TimeObserver.Windows;
+using Microsoft.Win32;
 
 namespace TimeObserver;
 
@@ -35,8 +36,15 @@ public partial class App : Application {
 
         Stopwatch.Tick += Stopwatch_Tick;
         Stopwatch.Stopped += Stopwatch_Stopped;
+        SystemEvents.SessionSwitch += OnSessionSwitch;
 
         await RemindersSystem.TryDeserializeAsync();
+    }
+
+    private void OnSessionSwitch(object sender, SessionSwitchEventArgs e) {
+        if (e.Reason == SessionSwitchReason.SessionUnlock) {
+            Stopwatch.Restart();
+        }
     }
 
     protected override async void OnExit(ExitEventArgs e) {
