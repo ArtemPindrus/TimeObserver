@@ -62,12 +62,5 @@
                 <reminders:IntervalReminder Interval="00:00:10" />
             </d:ListBox.Items>
         </ListBox>
-
-        <!--  Debug  -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Command="{Binding SerializeCommand}" Content="Serialize" />
-            <Button Command="{Binding DeserializeCommand}" Content="Deserialize" />
-            <Button Command="{Binding ClearCommand}" Content="Clear" />
-        </StackPanel>
     </Grid>
 </UserControl>
