@@ -29,10 +29,7 @@
             </StackPanel>
         </Border>
 
-        <views:RemindersView Grid.Row="1">
-            <views:RemindersView.DataContext>
-                <viewmodels:RemindersViewModel />
-            </views:RemindersView.DataContext>
-        </views:RemindersView>
+        <views:RemindersView Grid.Row="1" />
+
     </Grid>
 </Window>

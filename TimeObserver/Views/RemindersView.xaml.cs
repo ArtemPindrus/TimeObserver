@@ -20,9 +20,11 @@ namespace TimeObserver.Views
     /// </summary>
     public partial class RemindersView : UserControl
     {
-        public RemindersView()
-        {
+        public RemindersView() {
             InitializeComponent();
+            DataContext = new RemindersViewModel();
+
+            FillInAddButtonContextMenu();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
