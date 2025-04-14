@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using TimeObserver.Extensions;
+using TimeObserver.Models.Reminders;
+using TimeObserver.ViewModels;
 
 namespace TimeObserver.Views
 {
@@ -27,12 +20,24 @@ namespace TimeObserver.Views
             FillInAddButtonContextMenu();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
-            Button button = (Button)sender;
+        private void FillInAddButtonContextMenu() {
+            Type reminderBaseType = typeof(Reminder);
+            IEnumerable<Type> types = reminderBaseType.Assembly.GetTypes().Where(x => x.IsSubclassOf(reminderBaseType) && x != reminderBaseType);
+            ICommand openAddReminderWindowCommand = ((RemindersViewModel)DataContext).OpenAddReminderWindowCommand;
 
-            button.ContextMenu.IsOpen = true;
+            foreach (var subType in types) {
+                var addReminderViewModelAttribute = subType.GetCustomAttribute<AddReminderViewModelAttribute>();
+                if (addReminderViewModelAttribute == null) 
+                    throw new Exception($"Reminder Type {subType.Name} isn't decorated with {nameof(AddReminderViewModelAttribute)}");
 
-            e.Handled = true;
+                var menuItem = new MenuItem() {
+                    Header = subType.Name.SeparateByUppercase(),
+                    Command = openAddReminderWindowCommand,
+                    CommandParameter = Activator.CreateInstance(addReminderViewModelAttribute.AddReminderViewModelType),
+                };
+
+                AddButtonContextMenu.Items.Add(menuItem);
+            }
         }
     }
 }
