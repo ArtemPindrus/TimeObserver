@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using System.Windows;
+using TimeObserver.Utilities;
 using TimeObserver.Windows;
 
 namespace TimeObserver.ViewModels {
@@ -8,6 +9,10 @@ namespace TimeObserver.ViewModels {
         }
 
         [RelayCommand]
-        private static void Close() => App.HideSettingsWindow();
+        private static void Close() {
+            App.HideSettingsWindow();
+
+            WindowsHelper.CloseAllWindows<AddReminderWindow>();
+        }
     }
 }
