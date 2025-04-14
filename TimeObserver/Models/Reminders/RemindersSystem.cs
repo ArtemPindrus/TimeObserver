@@ -38,7 +38,7 @@ namespace TimeObserver.Models.Reminders {
 
         public void RemoveReminder(Reminder reminder) => reminders.Remove(reminder);
 
-        public async Task Serialize() {
+        public async Task SerializeAsync() {
             serializationTokenSource.Cancel();
             serializationTokenSource = new CancellationTokenSource();
 
@@ -46,7 +46,7 @@ namespace TimeObserver.Models.Reminders {
             await JsonSerializer.SerializeAsync(stream, reminders, JsonSerializerOptions.Default, serializationTokenSource.Token);
         }
 
-        public async Task TryDeserialize() {
+        public async Task TryDeserializeAsync() {
             if (!File.Exists(RemindersFileName)) return;
 
             using FileStream stream = File.Open(RemindersFileName, FileMode.Open, FileAccess.Read, FileShare.None);
