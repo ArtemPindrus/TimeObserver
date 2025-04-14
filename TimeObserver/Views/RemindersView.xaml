@@ -28,7 +28,6 @@
                 Margin="5"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
-                Click="Button_Click"
                 Content="Add">
                 <Button.ContextMenu>
                     <ContextMenu Name="AddButtonContextMenu" />
@@ -57,6 +56,7 @@
             <d:ListBox.Items>
                 <reminders:IntervalReminder Interval="00:00:10" />
                 <reminders:IntervalReminder Interval="00:00:10" />
+                <reminders:OneTimeReminder Time="00:00:20" />
             </d:ListBox.Items>
         </ListBox>
     </Grid>
