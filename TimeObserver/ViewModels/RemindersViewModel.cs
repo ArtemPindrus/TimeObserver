@@ -2,6 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using TimeObserver.Models.Reminders;
+using TimeObserver.Utilities;
+using TimeObserver.ViewModels.AddReminderViewModels;
+using TimeObserver.Windows;
 
 namespace TimeObserver.ViewModels
 {
@@ -9,6 +12,19 @@ namespace TimeObserver.ViewModels
         public ReadOnlyObservableCollection<Reminder> Reminders => App.RemindersSystem.Reminders;
 
         public RemindersViewModel() {
+        }
+
+        [RelayCommand]
+        public static void OpenAddReminderWindow(AddReminderViewModel addReminderViewModel) {
+            var mainContent = ViewFinder.FindView(addReminderViewModel);
+
+            if (mainContent == null) return;
+
+            WindowsHelper.OpenWindowIfNotOpen(out AddReminderWindow window);
+
+            var vm = new AddReminderWindowViewModel(mainContent, window);
+
+            window.DataContext = vm;
         }
 
         [RelayCommand]
