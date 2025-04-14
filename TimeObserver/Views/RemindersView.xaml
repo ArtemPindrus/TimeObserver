@@ -28,17 +28,22 @@
                 Margin="5"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
-                Content="Add">
+                Content="Add"
+                ToolTip="RMB to choose Reminder.">
                 <Button.ContextMenu>
                     <ContextMenu Name="AddButtonContextMenu" />
-
                 </Button.ContextMenu>
             </Button>
         </Grid>
 
-        <ListBox Grid.Row="1" ItemsSource="{Binding Reminders}">
+        <ListBox
+            Grid.Row="1"
+            Background="{StaticResource ContentBrush}"
+            BorderThickness="0"
+            ItemsSource="{Binding Reminders}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
+                    <Setter Property="Background" Value="{StaticResource HeaderBrush}" />
                     <Setter Property="Tag" Value="{Binding DataContext, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                     <Setter Property="ContextMenu">
                         <Setter.Value>
@@ -52,12 +57,14 @@
                     </Setter>
                 </Style>
             </ListBox.ItemContainerStyle>
+            <d:ListBox.ItemsSource>
+                <CompositeCollection>
+                    <reminders:IntervalReminder Interval="00:10:00" />
+                    <reminders:IntervalReminder Interval="00:10:00" />
+                    <reminders:OneTimeReminder />
 
-            <d:ListBox.Items>
-                <reminders:IntervalReminder Interval="00:00:10" />
-                <reminders:IntervalReminder Interval="00:00:10" />
-                <reminders:OneTimeReminder Time="00:00:20" />
-            </d:ListBox.Items>
+                </CompositeCollection>
+            </d:ListBox.ItemsSource>
         </ListBox>
     </Grid>
 </UserControl>

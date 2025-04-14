@@ -29,9 +29,17 @@
             </StackPanel>
         </Border>
 
-        <ContentControl
-            Grid.Row="1"
-            Margin="10"
-            Content="{Binding MainContent}" />
+        <Border Grid.Row="1" Background="{StaticResource ContentBrush}">
+            <ScrollViewer>
+                <ContentControl
+                    Margin="10"
+                    HorizontalAlignment="Center"
+                    Content="{Binding MainContent}">
+                    <d:ContentControl.Content>
+                        <addreminder:AddOneTimeReminderView />
+                    </d:ContentControl.Content>
+                </ContentControl>
+            </ScrollViewer>
+        </Border>
     </Grid>
 </Window>

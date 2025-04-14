@@ -42,7 +42,10 @@
         </tb:TaskbarIcon>
 
         <!--  Header  -->
-        <Border Name="Header" Background="{StaticResource HeaderBrush}">
+        <Border
+            Name="Header"
+            Background="{StaticResource HeaderBrush}"
+            BorderBrush="{StaticResource HeaderBrush}">
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                 <Button Command="{Binding ShowSettingsWindowCommand}" Style="{StaticResource HeaderButton}">S</Button>
                 <Button Command="{Binding ToTrayCommand}" Style="{StaticResource HeaderButton}">-</Button>

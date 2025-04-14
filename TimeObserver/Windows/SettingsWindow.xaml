@@ -29,7 +29,9 @@
             </StackPanel>
         </Border>
 
-        <views:RemindersView Grid.Row="1" />
+        <Border Grid.Row="1" Background="{StaticResource ContentBrush}">
+            <views:RemindersView Margin="5" />
+        </Border>
 
     </Grid>
 </Window>
