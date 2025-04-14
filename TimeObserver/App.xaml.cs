@@ -1,7 +1,10 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using TimeObserver.Models;
 using TimeObserver.Models.Reminders;
+using TimeObserver.Utilities;
 using TimeObserver.ViewModels;
+using TimeObserver.ViewModels.AddReminderViewModels;
 using TimeObserver.Windows;
 
 namespace TimeObserver;
@@ -18,7 +21,7 @@ public partial class App : Application {
     };
 
     
-    protected override void OnStartup(StartupEventArgs e) {
+    protected async override void OnStartup(StartupEventArgs e) {
         base.OnStartup(e);
 
         Stopwatch.Resume();
@@ -33,6 +36,13 @@ public partial class App : Application {
         Stopwatch.Tick += Stopwatch_Tick;
         Stopwatch.Stopped += Stopwatch_Stopped;
 
+        await RemindersSystem.TryDeserializeAsync();
+    }
+
+    protected override async void OnExit(ExitEventArgs e) {
+        await RemindersSystem.SerializeAsync();
+
+        base.OnExit(e);
     }
 
     private void Stopwatch_Stopped() {
