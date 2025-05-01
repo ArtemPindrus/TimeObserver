@@ -1,11 +1,15 @@
-﻿using System.Windows;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Windows;
 using TimeObserver.ViewModels.AddReminderViewModels;
 
 namespace TimeObserver.Models.Reminders
 {
     [AddReminderViewModel(typeof(AddIntervalReminderViewModel))]
-    public class IntervalReminder : Reminder {
+    public partial class IntervalReminder : Reminder {
         private double secondsInterval;
+
+        [ObservableProperty]
+        private TimeSpan nextTriggerTime;
 
         public TimeSpan Interval {
             get => TimeSpan.FromSeconds(secondsInterval);
@@ -28,28 +32,38 @@ namespace TimeObserver.Models.Reminders
         public IntervalReminder(TimeSpan interval, TimeSpan elapsedTime) {
             secondsInterval = interval.TotalSeconds;
 
-            TimesTriggered = (int)(elapsedTime.TotalSeconds / secondsInterval);
+            UpdateNextTimeTrigger(elapsedTime);
         }
 
         public override void Reset() {
-            TimesTriggered = (int)(App.Stopwatch.ElapsedTime.TotalSeconds / secondsInterval);
+            UpdateNextTimeTrigger(App.Stopwatch.ElapsedTime);
+        }
+
+        protected override void OnEnabled() {
+            Reset();
         }
 
         public override bool CheckTrigger(TimeSpan currentTime) {
-            int times = (int)(currentTime.TotalSeconds / secondsInterval);
-
-            return times > TimesTriggered;
+            return currentTime.TotalSeconds >= NextTriggerTime.TotalSeconds;
         }
 
         public override void Remind() {
             // TODO: implement
-            MessageBox.Show($"Interval Reminder triggered! {TimesTriggered} times.");
+            MessageBox.Show($"{App.Stopwatch.ElapsedTime} passed!");
+
+            UpdateNextTimeTrigger(App.Stopwatch.ElapsedTime);
         }
 
         public override bool IsEqualTo(Reminder reminder) {
             if (reminder is not IntervalReminder other) return false;
 
             return other.Interval == Interval;
+        }
+
+        private void UpdateNextTimeTrigger(TimeSpan passedTime) {
+            int times = (int)(passedTime.TotalSeconds / secondsInterval);
+
+            NextTriggerTime = TimeSpan.FromSeconds(secondsInterval * (times + 1));
         }
     }
 }

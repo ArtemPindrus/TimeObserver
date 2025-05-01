@@ -24,7 +24,6 @@ namespace TimeObserver.Models.Reminders
 
         public bool Update(TimeSpan elapsedTime) {
             if (CheckTrigger(elapsedTime)) {
-                TimesTriggered++;
                 Remind();
 
                 return true;
