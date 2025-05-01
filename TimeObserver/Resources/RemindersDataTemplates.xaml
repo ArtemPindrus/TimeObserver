@@ -3,13 +3,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:reminders="clr-namespace:TimeObserver.Models.Reminders">
     <DataTemplate DataType="{x:Type reminders:IntervalReminder}">
+        <StackPanel>
         <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding Enabled, Mode=TwoWay}" />
             <TextBlock Text="Interval: " />
             <TextBox Text="{Binding Interval, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
         </StackPanel>
     </DataTemplate>
     <DataTemplate DataType="{x:Type reminders:OneTimeReminder}">
         <StackPanel Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding Enabled, Mode=TwoWay}" />
             <TextBlock Text="One Time At: " />
             <TextBox Text="{Binding Time, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
         </StackPanel>

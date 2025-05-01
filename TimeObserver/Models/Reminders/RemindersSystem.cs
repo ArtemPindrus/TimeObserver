@@ -18,6 +18,8 @@ namespace TimeObserver.Models.Reminders {
 
         public void UpdateReminders(TimeSpan elapsedTime) {
             foreach (var reminder in reminders) {
+                if (!reminder.Enabled) continue;
+
                 reminder.Update(elapsedTime);
             }
         }

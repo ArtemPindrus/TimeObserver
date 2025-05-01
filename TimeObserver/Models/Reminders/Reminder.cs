@@ -5,9 +5,9 @@ namespace TimeObserver.Models.Reminders
 {
     [JsonDerivedType(typeof(IntervalReminder), "IntervalReminder")]
     [JsonDerivedType(typeof(OneTimeReminder), "OneTimeReminder")]
-    public abstract class Reminder : ObservableObject {
-        [JsonIgnore]
-        public int TimesTriggered { get; protected set; }
+    public abstract partial class Reminder : ObservableObject {
+        [ObservableProperty]
+        private bool enabled;
 
         /// <summary>
         /// Check if Reminder is triggered.
@@ -32,5 +32,11 @@ namespace TimeObserver.Models.Reminders
 
             return false;
         }
+
+        partial void OnEnabledChanged(bool value) {
+            if (value) OnEnabled();
+        }
+
+        protected virtual void OnEnabled() { }
     }
 }
