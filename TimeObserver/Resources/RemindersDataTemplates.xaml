@@ -4,10 +4,17 @@
     xmlns:reminders="clr-namespace:TimeObserver.Models.Reminders">
     <DataTemplate DataType="{x:Type reminders:IntervalReminder}">
         <StackPanel>
-        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal">
                 <CheckBox IsChecked="{Binding Enabled, Mode=TwoWay}" />
-            <TextBlock Text="Interval: " />
-            <TextBox Text="{Binding Interval, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                <TextBlock Text="Interval: " />
+                <TextBox Text="{Binding Interval, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock>
+                    <Run Text="Next Trigger: " />
+                    <Run Text="{Binding NextTriggerTime, Mode=OneWay}" />
+                </TextBlock>
+            </StackPanel>
         </StackPanel>
     </DataTemplate>
     <DataTemplate DataType="{x:Type reminders:OneTimeReminder}">
