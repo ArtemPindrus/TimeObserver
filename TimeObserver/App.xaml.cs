@@ -47,8 +47,8 @@ public partial class App : Application {
         }
     }
 
-    protected override async void OnExit(ExitEventArgs e) {
-        await RemindersSystem.SerializeAsync();
+    protected override void OnExit(ExitEventArgs e) {
+        RemindersSystem.Serialize();
 
         base.OnExit(e);
     }
