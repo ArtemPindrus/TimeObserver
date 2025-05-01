@@ -40,6 +40,11 @@ namespace TimeObserver.Models.Reminders {
 
         public void RemoveReminder(Reminder reminder) => reminders.Remove(reminder);
 
+        public void Serialize() {
+            var ser = JsonSerializer.Serialize<ObservableCollection<Reminder>>(reminders, JsonSerializerOptions.Default);
+            File.WriteAllText(RemindersFileName, ser);
+        }
+
         public async Task SerializeAsync() {
             serializationTokenSource.Cancel();
             serializationTokenSource = new CancellationTokenSource();
