@@ -1,0 +1,22 @@
+﻿<UserControl
+    x:Class="TimeObserver.Controls.ReminderItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TimeObserver.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:reminders="clr-namespace:TimeObserver.Models.Reminders"
+    d:DataContext="{d:DesignInstance Type=reminders:Reminder}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical">
+            <CheckBox
+                Margin="0,0,0,5"
+                Content="{Binding Converter={StaticResource ObjectToTypeConcreteNameConverter}}"
+                IsChecked="{Binding Enabled, Mode=TwoWay}" />
+            <ContentControl Content="{Binding RelativeSource={RelativeSource AncestorType=local:ReminderItem}, Path=MainContent}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

@@ -1,27 +1,34 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:TimeObserver.Controls"
     xmlns:reminders="clr-namespace:TimeObserver.Models.Reminders">
     <DataTemplate DataType="{x:Type reminders:IntervalReminder}">
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <CheckBox IsChecked="{Binding Enabled, Mode=TwoWay}" />
-                <TextBlock Text="Interval: " />
-                <TextBox Text="{Binding Interval, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
-            </StackPanel>
-            <StackPanel>
-                <TextBlock>
-                    <Run Text="Next Trigger: " />
-                    <Run Text="{Binding NextTriggerTime, Mode=OneWay}" />
-                </TextBlock>
-            </StackPanel>
-        </StackPanel>
+        <controls:ReminderItem>
+            <controls:ReminderItem.MainContent>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Interval: " />
+                        <TextBox Text="{Binding Interval, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock>
+                            <Run Text="Next Trigger: " />
+                            <Run Text="{Binding NextTriggerTime, Mode=OneWay}" />
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </controls:ReminderItem.MainContent>
+        </controls:ReminderItem>
     </DataTemplate>
     <DataTemplate DataType="{x:Type reminders:OneTimeReminder}">
-        <StackPanel Orientation="Horizontal">
-            <CheckBox IsChecked="{Binding Enabled, Mode=TwoWay}" />
-            <TextBlock Text="One Time At: " />
-            <TextBox Text="{Binding Time, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
-        </StackPanel>
+        <controls:ReminderItem>
+            <controls:ReminderItem.MainContent>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="One Time At: " />
+                    <TextBox Text="{Binding Time, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                </StackPanel>
+            </controls:ReminderItem.MainContent>
+        </controls:ReminderItem>
     </DataTemplate>
 </ResourceDictionary>
