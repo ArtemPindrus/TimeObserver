@@ -16,6 +16,7 @@
                     <GridLength x:Key="HeaderHeight">18</GridLength>
                     <converters:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
                     <converters:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverterInverted" Invert="true" />
+                    <converters:ObjectToTypeConcreteNameConverter x:Key="ObjectToTypeConcreteNameConverter" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
