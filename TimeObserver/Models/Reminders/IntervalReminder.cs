@@ -4,7 +4,6 @@ using TimeObserver.ViewModels.AddReminderViewModels;
 
 namespace TimeObserver.Models.Reminders
 {
-    [AddReminderViewModel(typeof(AddIntervalReminderViewModel))]
     public partial class IntervalReminder : Reminder {
         private double secondsInterval;
 

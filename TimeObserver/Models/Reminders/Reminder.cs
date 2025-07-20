@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace TimeObserver.Models.Reminders
 {
     [JsonDerivedType(typeof(IntervalReminder), "IntervalReminder")]
-    [JsonDerivedType(typeof(OneTimeReminder), "OneTimeReminder")]
+    [JsonDerivedType(typeof(OneshotReminder), "OneTimeReminder")]
     public abstract partial class Reminder : ObservableObject {
         [ObservableProperty]
         private bool enabled;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using TimeObserver.Models.Reminders;
 
 namespace TimeObserver.ViewModels.AddReminderViewModels {
-    public partial class AddOneTimeReminderViewModel : AddReminderViewModel {
+    public partial class AddOneshotReminderViewModel : AddReminderViewModel {
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(AddCommand))]
         private string? time;
@@ -18,6 +18,6 @@ namespace TimeObserver.ViewModels.AddReminderViewModels {
             return TimeSpan.TryParse(Time, out lastParsedTime);
         }
 
-        protected override Reminder ConstructReminder() => new OneTimeReminder(lastParsedTime);
+        protected override Reminder ConstructReminder() => new OneshotReminder(lastParsedTime);
     }
 }

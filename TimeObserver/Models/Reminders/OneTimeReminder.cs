@@ -1,17 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Windows;
-using TimeObserver.ViewModels.AddReminderViewModels;
 
 namespace TimeObserver.Models.Reminders
 {
-    [AddReminderViewModel(typeof(AddOneTimeReminderViewModel))]
-    public partial class OneTimeReminder : Reminder {
+    public partial class OneshotReminder : Reminder {
         [ObservableProperty]
         private TimeSpan time;
 
-        public OneTimeReminder() : this(TimeSpan.Zero) { }
+        public OneshotReminder() : this(TimeSpan.Zero) { }
 
-        public OneTimeReminder(TimeSpan time) {
+        public OneshotReminder(TimeSpan time) {
             this.time = time;
         }
 
@@ -20,7 +18,7 @@ namespace TimeObserver.Models.Reminders
         }
 
         public override bool IsEqualTo(Reminder reminder) {
-            return reminder is OneTimeReminder oneTimeReminder && Time == oneTimeReminder.Time;
+            return reminder is OneshotReminder oneTimeReminder && Time == oneTimeReminder.Time;
         }
 
         public override void Remind() {

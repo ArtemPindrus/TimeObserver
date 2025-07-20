@@ -23,17 +23,16 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" VerticalAlignment="Center">Reminders:</TextBlock>
-            <Button
+            <Menu
                 Grid.Column="1"
                 Margin="5"
                 HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Content="Add"
-                ToolTip="RMB to choose Reminder.">
-                <Button.ContextMenu>
-                    <ContextMenu Name="AddButtonContextMenu" />
-                </Button.ContextMenu>
-            </Button>
+                VerticalAlignment="Center">
+                <MenuItem Header="Add">
+                    <MenuItem Command="{Binding OpenAddOneshotReminderWindowCommand}" Header="OneShot Reminder" />
+                    <MenuItem Command="{Binding OpenAddIntervalReminderWindowCommand}" Header="Interval Reminder" />
+                </MenuItem>
+            </Menu>
         </Grid>
 
         <ListBox
@@ -61,7 +60,7 @@
                 <CompositeCollection>
                     <reminders:IntervalReminder Interval="00:10:00" />
                     <reminders:IntervalReminder Interval="00:10:00" />
-                    <reminders:OneTimeReminder />
+                    <reminders:OneshotReminder />
 
                 </CompositeCollection>
             </d:ListBox.ItemsSource>

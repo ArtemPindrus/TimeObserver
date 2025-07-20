@@ -1,9 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
 using TimeObserver.Models.Reminders;
-using TimeObserver.Utilities;
 using TimeObserver.ViewModels.AddReminderViewModels;
+using TimeObserver.Views.AddReminder;
 using TimeObserver.Windows;
 
 namespace TimeObserver.ViewModels
@@ -11,20 +10,30 @@ namespace TimeObserver.ViewModels
     public partial class RemindersViewModel : ViewModel {
         public ReadOnlyObservableCollection<Reminder> Reminders => App.RemindersSystem.Reminders;
 
-        public RemindersViewModel() {
+        [RelayCommand]
+        public void OpenAddIntervalReminderWindow() {
+            var mainContent = new AddIntervalReminderView() {
+                DataContext = new AddIntervalReminderViewModel()
+            };
+
+            AddReminderWindow addReminderWindow = new() { 
+                DataContext = new AddReminderWindowViewModel(mainContent)    
+            };
+
+            addReminderWindow.Show();
         }
 
         [RelayCommand]
-        public static void OpenAddReminderWindow(AddReminderViewModel addReminderViewModel) {
-            var mainContent = ViewFinder.FindView(addReminderViewModel);
+        public void OpenAddOneshotReminderWindow() {
+            var mainContent = new AddOneshotReminderView() {
+                DataContext = new AddOneshotReminderViewModel()
+            };
 
-            if (mainContent == null) return;
+            AddReminderWindow addReminderWindow = new() {
+                DataContext = new AddReminderWindowViewModel(mainContent)
+            };
 
-            WindowsHelper.OpenWindowIfNotOpen(out AddReminderWindow window);
-
-            var vm = new AddReminderWindowViewModel(mainContent, window);
-
-            window.DataContext = vm;
+            addReminderWindow.Show();
         }
 
         [RelayCommand]

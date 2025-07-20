@@ -25,7 +25,7 @@
 
         <Border Name="Header" Background="{StaticResource HeaderBrush}">
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Command="{Binding CloseCommand}" Style="{StaticResource HeaderButton}">X</Button>
+                <Button Click="CloseButton_Click" Style="{StaticResource HeaderButton}">X</Button>
             </StackPanel>
         </Border>
 
@@ -36,7 +36,7 @@
                     HorizontalAlignment="Center"
                     Content="{Binding MainContent}">
                     <d:ContentControl.Content>
-                        <addreminder:AddOneTimeReminderView />
+                        <addreminder:AddOneshotReminderView />
                     </d:ContentControl.Content>
                 </ContentControl>
             </ScrollViewer>

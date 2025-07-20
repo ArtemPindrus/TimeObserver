@@ -17,8 +17,8 @@ namespace TimeObserver.Views.AddReminder {
     /// <summary>
     /// Interaction logic for AddOneTimeReminderView.xaml
     /// </summary>
-    public partial class AddOneTimeReminderView : UserControl {
-        public AddOneTimeReminderView() {
+    public partial class AddOneshotReminderView : UserControl {
+        public AddOneshotReminderView() {
             InitializeComponent();
         }
     }

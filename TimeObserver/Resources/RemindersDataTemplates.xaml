@@ -21,7 +21,7 @@
             </controls:ReminderItem.MainContent>
         </controls:ReminderItem>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type reminders:OneTimeReminder}">
+    <DataTemplate DataType="{x:Type reminders:OneshotReminder}">
         <controls:ReminderItem>
             <controls:ReminderItem.MainContent>
                 <StackPanel Orientation="Horizontal">
