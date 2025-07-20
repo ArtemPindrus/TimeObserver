@@ -61,6 +61,14 @@ public partial class App : Application {
         RemindersSystem.UpdateReminders(elapsedTime);
     }
 
+    //public static void SwitchSettingWindowVisibility() {
+    //    if (settingsWindow.IsVisible) {
+    //        settingsWindow.Hide();
+    //    } else {
+    //        settingsWindow.Show();
+    //    }
+    //}
+
     public static void ShowSettingsWindow() => settingsWindow.Show();
 
     public static void HideSettingsWindow() => settingsWindow.Hide();
